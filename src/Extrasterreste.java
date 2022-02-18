@@ -1,7 +1,7 @@
 public class Extrasterreste extends Persona{
 
-    public Extrasterreste(String nombre, String poder, String debilidad, String heroe, String villano, Integer fuerza, Integer habilidadMental, Integer habilidadFisica) {
-        super(nombre, poder, debilidad, heroe, villano, fuerza, habilidadMental, habilidadFisica);
+    public Extrasterreste(String nombre, String poder, String debilidad, String heroeOVillano, Integer fuerza, Integer habilidadMental, Integer habilidadFisica) {
+        super(nombre, poder, debilidad, heroeOVillano, fuerza, habilidadMental, habilidadFisica);
     }
 
     public static class Deidad extends Extrasterreste {
@@ -10,8 +10,8 @@ public class Extrasterreste extends Persona{
         String religionMitologia;
 
         // Constructor
-        public Deidad(String nombre, String poder, String debilidad, String heroe, String villano, Integer fuerza, Integer habilidadMental, Integer habilidadFisica, boolean tieneCreyentes, String religionMitologia) {
-            super(nombre, poder, debilidad, heroe, villano, fuerza, habilidadMental, habilidadFisica);
+        public Deidad(String nombre, String poder, String debilidad, String heroeOVillano, Integer fuerza, Integer habilidadMental, Integer habilidadFisica, boolean tieneCreyentes, String religionMitologia) {
+            super(nombre, poder, debilidad, heroeOVillano, fuerza, habilidadMental, habilidadFisica);
             this.tieneCreyentes = tieneCreyentes;
             this.religionMitologia = religionMitologia;
         }
@@ -22,8 +22,8 @@ public class Extrasterreste extends Persona{
         String planeta;
 
         // Constructor
-        public Alien(String nombre, String poder, String debilidad, String heroe, String villano, Integer fuerza, Integer habilidadMental, Integer habilidadFisica, String planeta) {
-            super(nombre, poder, debilidad, heroe, villano, fuerza, habilidadMental, habilidadFisica);
+        public Alien(String nombre, String poder, String debilidad, String heroeOVillano, Integer fuerza, Integer habilidadMental, Integer habilidadFisica, String planeta) {
+            super(nombre, poder, debilidad, heroeOVillano, fuerza, habilidadMental, habilidadFisica);
             this.planeta = planeta;
         }
 

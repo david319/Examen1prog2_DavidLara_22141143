@@ -1,19 +1,19 @@
 public class Persona {
 
     // Atributos
-    String nombre, poder, debilidad, heroe, villano;
+    String nombre, poder, debilidad, heroeOVillano;
     Integer fuerza, habilidadMental, habilidadFisica;
     boolean tiene_Escuadron;
 
-    public Persona(String nombre, String poder, String debilidad, String heroe, String villano, Integer fuerza, Integer habilidadMental, Integer habilidadFisica) {
+    public Persona(String nombre, String poder, String debilidad, String heroeOVillano, Integer fuerza, Integer habilidadMental, Integer habilidadFisica) {
         this.nombre = nombre;
         this.poder = poder;
         this.debilidad = debilidad;
-        this.heroe = heroe;
-        this.villano = villano;
+        this.heroeOVillano = heroeOVillano;
         this.fuerza = fuerza;
         this.habilidadMental = habilidadMental;
         this.habilidadFisica = habilidadFisica;
+        tiene_Escuadron = false;
     }
 
     public String getNombre() {
@@ -40,20 +40,12 @@ public class Persona {
         this.debilidad = debilidad;
     }
 
-    public String getHeroe() {
-        return heroe;
+    public String getHeroeOVillano() {
+        return heroeOVillano;
     }
 
-    public void setHeroe(String heroe) {
-        this.heroe = heroe;
-    }
-
-    public String getVillano() {
-        return villano;
-    }
-
-    public void setVillano(String villano) {
-        this.villano = villano;
+    public void setHeroeOVillano(String heroeOVillano) {
+        this.heroeOVillano = heroeOVillano;
     }
 
     public Integer getFuerza() {
@@ -93,6 +85,6 @@ public class Persona {
     }
 
     public String toString() {
-        return "Persona{" + "nombre=" + nombre + ", poder=" + poder + ", debilidad=" + debilidad + ", heroe=" + heroe + ", villano=" + villano + ", fuerza=" + fuerza + ", habilidadMental=" + habilidadMental + ", habilidadFisica=" + habilidadFisica + ", tiene_Escuadron=" + tiene_Escuadron + '}';
+        return "Persona{" + "nombre=" + nombre + ", poder=" + poder + ", debilidad=" + debilidad + ", fuerza=" + fuerza + ", habilidadMental=" + habilidadMental + ", habilidadFisica=" + habilidadFisica + ", tiene_Escuadron=" + tiene_Escuadron + '}';
     }
 }
