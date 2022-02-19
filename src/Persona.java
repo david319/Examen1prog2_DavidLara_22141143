@@ -1,9 +1,12 @@
 public class Persona {
 
     // Atributos
-    String nombre, poder, debilidad, heroeOVillano;
-    Integer fuerza, habilidadMental, habilidadFisica;
-    boolean tiene_Escuadron;
+    private String nombre;
+    private String poder;
+    private String debilidad;
+    private String heroeOVillano;
+    private Integer fuerza, habilidadMental, habilidadFisica;
+    private boolean tiene_Escuadron;
 
     public Persona(String nombre, String poder, String debilidad, String heroeOVillano, Integer fuerza, Integer habilidadMental, Integer habilidadFisica) {
         this.nombre = nombre;
@@ -14,6 +17,29 @@ public class Persona {
         this.habilidadMental = habilidadMental;
         this.habilidadFisica = habilidadFisica;
         tiene_Escuadron = false;
+    }
+
+    public static void editarPersona(String nombre, String poder, String debilidad, String heroeOVillano, Integer fuerza, Integer habilidadMental, Integer habilidadFisica) {
+        for (Persona escuadron : Escuadron.miembros) {
+            if (escuadron.getNombre().equals(nombre)) {
+                escuadron.setPoder(poder);
+                escuadron.setDebilidad(debilidad);
+                escuadron.setHeroeOVillano(heroeOVillano);
+                escuadron.setFuerza(fuerza);
+                escuadron.setHabilidadMental(habilidadMental);
+                escuadron.setHabilidadFisica(habilidadFisica);
+            }
+        }
+    }
+
+    public static void deletePersona(String nombre) {
+        Escuadron.miembros.removeIf(escuadron -> escuadron.getNombre().equals(nombre));
+    }
+
+    public static void listPersona() {
+        for (Persona persona : Escuadron.miembros) {
+            System.out.println(persona.toString());
+        }
     }
 
     public String getNombre() {
@@ -47,6 +73,7 @@ public class Persona {
     public void setHeroeOVillano(String heroeOVillano) {
         this.heroeOVillano = heroeOVillano;
     }
+
 
     public Integer getFuerza() {
         return fuerza;

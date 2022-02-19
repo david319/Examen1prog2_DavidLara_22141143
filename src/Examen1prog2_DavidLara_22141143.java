@@ -7,11 +7,35 @@ public class Examen1prog2_DavidLara_22141143 {
         return pts >= 100 && pts <= 150;
     }
 
+    public static void defaultU() {
+        Universo universo = new Universo("Alfa");
+        Universo.universos.add(universo);
+    }
+
+    public static void defaultSquad() {
+        Escuadron.addEscuadron("Escuadron 0", "Alfa", false);
+        Escuadron.addEscuadron("Escuadron 1", "Alfa", true);
+    }
+
+    public static void defaultPersonaje() {
+        PersonaNormal.Mutante ad = new PersonaNormal.Mutante("Wolverine", "Garras de adamantium", "Adamantium", "heroe", 30, 50,60, "Adamantium");
+        Escuadron.miembros.add(ad);
+        PersonaNormal.Mutante.setLider(ad);
+        Extrasterreste.Alien a = new Extrasterreste.Alien("Alien", "Garras de adamantium", "Adamantium", "heroe", 30, 50,60, "Adamantium");
+        Escuadron.miembros.add(a);
+    }
+
     public static void main(String[] args) {
-        Scanner leer = new Scanner(System.in);
+        Scanner leer = new Scanner(System.in).useDelimiter("\n");
 
         //Declaración de variables
         int opcion;
+
+        // Inicialización de defaults
+        defaultU();
+        defaultSquad();
+        defaultPersonaje();
+
         System.out.println("Menu de opciones");
         do {
             System.out.println("""
@@ -51,7 +75,7 @@ public class Examen1prog2_DavidLara_22141143 {
                     Universo.deleteUniverso(nombre);
                 } else if (opcion == 4) {
                     System.out.println("Mostrar universo");
-                    Universo.listUniversos();
+                    System.out.println(Universo.listUniversos());
                 }
             } else if (opcion == 2) {
                 System.out.println("Opciones del Escuadrón");
@@ -118,6 +142,15 @@ public class Examen1prog2_DavidLara_22141143 {
                 } else if (opcion == 5) {
                     System.out.println("Mostrar escuadrones");
                     Universo.listSquads();
+                } else if (opcion == 6) {
+                    System.out.println("Iniciando batalla");
+                    Universo.listSquads();
+                    System.out.println("Ingrese el nombre del escuadrón1:");
+                    String nombre = leer.next();
+                    System.out.println("Ingrese el nombre del escuadrón2:");
+                    String nombre2 = leer.next();
+                    Escuadron.batalla(nombre, nombre2);
+
                 }
             } else if (opcion == 3) {
                 System.out.println("Opciones Persona");
@@ -137,6 +170,7 @@ public class Examen1prog2_DavidLara_22141143 {
                             2. Mutante
                             3. Por Accidente Radioactivo
                             4. Super Humano
+                            5. Extrasterrestre
                             Ingrese una opción:""");
                     opcion = leer.nextInt();
 
@@ -148,7 +182,7 @@ public class Examen1prog2_DavidLara_22141143 {
                         System.out.println("Ingrese la debilidad:");
                         String debilidad = leer.next();
                         System.out.println("Ingrese si es heroe o villano:");
-                        String tipo = leer.next();
+                        String tipo = leer.next().toLowerCase();
                         System.out.println("Ingrese los pts de fuerza:");
                         int fuerza = leer.nextInt();
                         System.out.println("Ingrese los pts de habilidad mental:");
@@ -168,7 +202,7 @@ public class Examen1prog2_DavidLara_22141143 {
                         System.out.println("Ingrese la debilidad:");
                         String debilidad = leer.next();
                         System.out.println("Ingrese si es heroe o villano:");
-                        String tipo = leer.next();
+                        String tipo = leer.next().toLowerCase();
                         System.out.println("Ingrese los pts de fuerza:");
                         int fuerza = leer.nextInt();
                         System.out.println("Ingrese los pts de habilidad mental:");
@@ -190,7 +224,7 @@ public class Examen1prog2_DavidLara_22141143 {
                         System.out.println("Ingrese la debilidad:");
                         String debilidad = leer.next();
                         System.out.println("Ingrese si es heroe o villano:");
-                        String tipo = leer.next();
+                        String tipo = leer.next().toLowerCase();
                         System.out.println("Ingrese los pts de fuerza:");
                         int fuerza = leer.nextInt();
                         System.out.println("Ingrese los pts de habilidad mental:");
@@ -212,7 +246,7 @@ public class Examen1prog2_DavidLara_22141143 {
                         System.out.println("Ingrese la debilidad:");
                         String debilidad = leer.next();
                         System.out.println("Ingrese si es heroe o villano:");
-                        String tipo = leer.next();
+                        String tipo = leer.next().toLowerCase();
                         System.out.println("Ingrese los pts de fuerza:");
                         int fuerza = leer.nextInt();
                         System.out.println("Ingrese los pts de habilidad mental:");
@@ -226,8 +260,79 @@ public class Examen1prog2_DavidLara_22141143 {
                         } else {
                             System.out.println("No puede ser un héroe o villano por sus pts de habilidad");
                         }
+                    } else if (opcion == 5) {
+                        System.out.println("""
+                                1. Deidad
+                                2. Alien
+                                ingrese la opcion:""");
+                        int opcion2 = leer.nextInt();
+                        if (opcion2 == 1) {
+                            System.out.println("Ingrese el nombre de la persona:");
+                            String nombre = leer.next();
+                            System.out.println("Ingrese el poder:");
+                            String poder = leer.next();
+                            System.out.println("Ingrese la debilidad:");
+                            String debilidad = leer.next();
+                            System.out.println("Ingrese si es heroe o villano:");
+                            String tipo = leer.next().toLowerCase();
+                            System.out.println("Ingrese los pts de fuerza:");
+                            int fuerza = leer.nextInt();
+                            System.out.println("Ingrese los pts de habilidad mental:");
+                            int habilidad = leer.nextInt();
+                            System.out.println("Ingrese los pts de habilidad fisica:");
+                            int habilidadFisica = leer.nextInt();
+                            System.out.println("Tiene creyentes? false/true:");
+                            boolean creyente = leer.nextBoolean();
+                            System.out.println("Ingrese la religion o mitologia:");
+                            String religion = leer.next();
+                            if (verifyPts(fuerza, habilidad, habilidadFisica)) {
+                                Extrasterreste.Deidad.addDeidad(nombre, poder, debilidad, tipo, fuerza, habilidad, habilidadFisica, creyente, religion);
+                            }
+                        } else if (opcion2 == 2) {
+                            System.out.println("Ingrese el nombre de la persona:");
+                            String nombre = leer.next();
+                            System.out.println("Ingrese el poder:");
+                            String poder = leer.next();
+                            System.out.println("Ingrese la debilidad:");
+                            String debilidad = leer.next();
+                            System.out.println("Ingrese si es heroe o villano:");
+                            String tipo = leer.next().toLowerCase();
+                            System.out.println("Ingrese los pts de fuerza:");
+                            int fuerza = leer.nextInt();
+                            System.out.println("Ingrese los pts de habilidad mental:");
+                            int habilidad = leer.nextInt();
+                            System.out.println("Ingrese los pts de habilidad fisica:");
+                            int habilidadFisica = leer.nextInt();
+                            System.out.println("Ingrese el planeta:");
+                            String planeta = leer.next();
+                            if (verifyPts(fuerza, habilidad, habilidadFisica)) {
+                                Extrasterreste.Alien.addAlien(nombre, poder, debilidad, tipo, fuerza, habilidad, habilidadFisica, planeta);
+                            }
+                        }
                     }
-
+                } else if (opcion == 2) {
+                    System.out.println("Ingrese el nombre de la persona:");
+                    String nombre = leer.next();
+                    System.out.println("Ingrese el poder:");
+                    String poder = leer.next();
+                    System.out.println("Ingrese la debilidad:");
+                    String debilidad = leer.next();
+                    System.out.println("Ingrese si es heroe o villano:");
+                    String tipo = leer.next().toLowerCase();
+                    System.out.println("Ingrese los pts de fuerza:");
+                    int fuerza = leer.nextInt();
+                    System.out.println("Ingrese los pts de habilidad mental:");
+                    int habilidad = leer.nextInt();
+                    System.out.println("Ingrese los pts de habilidad fisica:");
+                    int habilidadFisica = leer.nextInt();
+                    Persona.editarPersona(nombre, poder, debilidad, tipo, fuerza, habilidad, habilidadFisica);
+                } else if (opcion == 3) {
+                    System.out.println("Ingrese el nombre de la persona:");
+                    String nombre = leer.next();
+                    Persona.deletePersona(nombre);
+                } else if (opcion == 4) {
+                    System.out.println("Lista de personas:");
+                    Persona.listPersona();
                 }
             }
 

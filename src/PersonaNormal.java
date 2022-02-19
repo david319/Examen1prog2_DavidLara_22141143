@@ -14,6 +14,7 @@ public class PersonaNormal extends Persona {
                 Escuadron.miembros.add(new PersonaNormal(nombre, poder, debilidad, hereoOVillano, fuerza, habilidadMental, habilidadFisica));
             }
         }
+        Escuadron.miembros.add(new PersonaNormal(nombre, poder, debilidad, hereoOVillano, fuerza, habilidadMental, habilidadFisica));
     }
 
 
@@ -23,7 +24,7 @@ public class PersonaNormal extends Persona {
 
     public static class Mutante extends Persona {
         // Atributos
-        ArrayList<String> factoresMutantes = new ArrayList<>();
+        protected ArrayList<String> factoresMutantes = new ArrayList<>();
 
         // Constructor
         public Mutante(String nombre, String poder, String debilidad, String hereoOVillano, Integer fuerza, Integer habilidadMental, Integer habilidadFisica, String factorMutant) {
@@ -39,6 +40,15 @@ public class PersonaNormal extends Persona {
                     Escuadron.miembros.add(new Mutante(nombre, poder, debilidad, hereoOVillano, fuerza, habilidadMental, habilidadFisica, factorMutant));
                 }
             }
+            Escuadron.miembros.add(new Mutante(nombre, poder, debilidad, hereoOVillano, fuerza, habilidadMental, habilidadFisica, factorMutant));
+        }
+
+        public static void setLider(Persona p) {
+            for (Persona e : Escuadron.miembros) {
+                if (e.getNombre().equals(p.getNombre())) {
+                    Escuadron.lider = e;
+                }
+            }
         }
 
         public void final_chance(Persona p1, Persona p2) {
@@ -48,12 +58,15 @@ public class PersonaNormal extends Persona {
 
     public static class PorAccidenteRadioA extends Persona {
         // Atributos
-        Integer edadAlMomentoA;
+        protected Integer edadAlMomentoA;
 
         // Constructor
         public PorAccidenteRadioA(String nombre, String poder, String debilidad, String hereoOVillano, Integer fuerza, Integer habilidadMental, Integer habilidadFisica, Integer edadAlMomentoA) {
             super(nombre, poder, debilidad, hereoOVillano, fuerza, habilidadMental, habilidadFisica);
             this.edadAlMomentoA = edadAlMomentoA;
+        }
+        public static void setLider(Persona p) {
+            Escuadron.lider = p;
         }
 
         public static void addAccidente(String nombre, String poder, String debilidad, String hereoOVillano, Integer fuerza, Integer habilidadMental, Integer habilidadFisica, Integer edadAlMomentoA) {
@@ -64,6 +77,7 @@ public class PersonaNormal extends Persona {
                     Escuadron.miembros.add(new PorAccidenteRadioA(nombre, poder, debilidad, hereoOVillano, fuerza, habilidadMental, habilidadFisica, edadAlMomentoA));
                 }
             }
+            Escuadron.miembros.add(new PorAccidenteRadioA(nombre, poder, debilidad, hereoOVillano, fuerza, habilidadMental, habilidadFisica, edadAlMomentoA));
         }
 
         public void final_chance(Persona p1, Persona p2) {
@@ -87,6 +101,15 @@ public class PersonaNormal extends Persona {
                     System.out.println("Ya existe una persona con ese nombre");
                 } else {
                     Escuadron.miembros.add(new SuperHumano(nombre, poder, debilidad, hereoOVillano, fuerza, habilidadMental, habilidadFisica, superPoder));
+                }
+            }
+            Escuadron.miembros.add(new SuperHumano(nombre, poder, debilidad, hereoOVillano, fuerza, habilidadMental, habilidadFisica, superPoder));
+        }
+
+        public static void setLider(Persona p) {
+            for (Persona e : Escuadron.miembros) {
+                if (e.getNombre().equals(p.getNombre())) {
+                    Escuadron.lider = e;
                 }
             }
         }

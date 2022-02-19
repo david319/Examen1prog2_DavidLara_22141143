@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class Universo {
     // Atributos
-    String nombre;
-    static ArrayList<Universo> universos;
-    static ArrayList<Escuadron> squads;
+    private String nombre;
+    protected static ArrayList<Universo> universos = new ArrayList<>();
+    protected static ArrayList<Escuadron> squads;
 
     public Universo(String nombre) {
         this.nombre = nombre;
@@ -12,6 +12,15 @@ public class Universo {
     }
 
     public static void addUniverso(String nombre) {
+        for (Universo universo : universos) {
+            if (universo.getNombre().equals(nombre)) {
+                System.out.println("Ya existe un universo con ese nombre");
+            } else {
+                System.out.println("Universo creado");
+                Universo universo1 = new Universo(nombre);
+                universos.add(universo1);
+            }
+        }
         universos.add(new Universo(nombre));
     }
 
@@ -27,10 +36,11 @@ public class Universo {
         }
     }
 
-    public static void listUniversos(){
+    public static String listUniversos(){
         for (Universo universo : universos) {
-            System.out.println(universo.getNombre());
+            return universo.toString();
         }
+        return "";
     }
 
     public static void listSquads() {
@@ -51,7 +61,12 @@ public class Universo {
         return squads;
     }
 
-    public void setSquads(Escuadron squads) {
+    public static void setSquads(Escuadron squads) {
         Universo.squads.add(squads);
+    }
+
+    @Override
+    public String toString() {
+        return "Universo{" + "nombre=" + nombre + '}';
     }
 }

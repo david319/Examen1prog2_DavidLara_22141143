@@ -2,10 +2,11 @@ import java.util.ArrayList;
 
 public class Escuadron {
     // Atributos
-    String nombre, lugar_base;
-    Persona lider;
-    boolean heroeOVillano;
-    static ArrayList<Persona> miembros;
+    private String nombre;
+    private final String lugar_base;
+    protected static Persona lider;
+    private boolean heroeOVillano;
+    protected static ArrayList<Persona> miembros;
 
     public Escuadron(String nombre, String lugar_base, boolean heroeOVillano) {
         this.nombre = nombre;
@@ -22,6 +23,7 @@ public class Escuadron {
                 System.out.println("No existe el universo");
             }
         }
+        Universo.setSquads(new Escuadron(nombre, lugar_base, heroeOVillano));
     }
 
     public static void editEscuadron(String nombre, String nuevoNombre, String nuevolugar_base, boolean heroeOVillano) {
@@ -48,12 +50,43 @@ public class Escuadron {
         for (Escuadron universo : Universo.squads) {
             if (universo.getNombre().equals(nombre)) {
                 for (Persona persona : Escuadron.miembros) {
+                    if (persona.getHeroeOVillano().equals("heroe") && universo.isHeroeOVillano()) {
+                        universo.setLider(nombreM);
+                        miembros.add(persona);
+                    } else if (persona.getHeroeOVillano().equals("villano") && !universo.isHeroeOVillano()) {
+                        miembros.add(persona);
+                    } else {
+                        System.out.println("No existe el miembro");
+                    }
                     if (persona.getNombre().equals(nombreM)) {
                         miembros.add(persona);
                     }
                 }
+                miembros.addAll(miembros);
+                }
             }
         }
+
+    public static void batalla(String nombre, String nombre2) {
+        for (Escuadron universo : Universo.squads) {
+            if (universo.getNombre().equals(nombre)) {
+                for (Escuadron universo2 : Universo.squads) {
+                    if (universo2.getNombre().equals(nombre2)) {
+                        if (universo.isHeroeOVillano() && universo2.isHeroeOVillano()) {
+                            if (universo.getLider().getHeroeOVillano().equals("heroe") && universo2.getLider().getHeroeOVillano().equals("heroe")) {
+                                System.out.println("Batalla entre " + universo.getNombre() + " y " + universo2.getNombre());
+                            } else {
+                                System.out.println("Batalla entre " + universo.getNombre() + " y " + universo2.getNombre());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private Persona getLider() {
+        return lider;
     }
 
     public String getNombre() {
@@ -62,5 +95,29 @@ public class Escuadron {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public boolean isHeroeOVillano() {
+        return heroeOVillano;
+    }
+
+    public void setHeroeOVillano(boolean heroeOVillano) {
+        this.heroeOVillano = heroeOVillano;
+    }
+
+    public static void setMiembros(ArrayList<Persona> miembros) {
+        Escuadron.miembros = miembros;
+    }
+
+    public void setLider(String nombre) {
+        for (Persona persona : miembros) {
+            if (persona.getNombre().equals(nombre)) {
+                this.lider = persona;
+            }
+        }
+    }
+
+    public String toString() {
+        return "nombre=" + nombre + ", lugar_base=" + lugar_base + ", lider=" + lider + ", heroeOVillano=" + heroeOVillano + ", miembros=" + miembros + '}';
     }
 }
